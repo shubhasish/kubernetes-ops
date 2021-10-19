@@ -13,7 +13,7 @@ on:
     # only run when files in this path changes
     # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#example-using-positive-and-negative-patterns-1
     paths:
-    - 'terraform-environments/staging/dev/**'
+    - 'terraform-environments/aws/staging/**'
 
 jobs:
   ## This generates a matrix of changed directory to run Terraform on
