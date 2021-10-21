@@ -1,5 +1,5 @@
 locals {
-  aws_region       = "us-east-1"
+  aws_region       = "us-west-2"
   environment_name = "staging"
   tags = {
     ops_env              = "${local.environment_name}"
@@ -38,11 +38,14 @@ module "vpc" {
   source = "github.com/ManagedKube/kubernetes-ops//terraform-modules/aws/vpc?ref=v1.0.24"
 
   aws_region       = local.aws_region
-  azs              = ["us-east-1a", "us-east-1b"]
+  azs              = ["us-east-2a", "us-east-2b"]
   vpc_cidr         = "10.0.0.0/16"
-  private_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
+  secodary_cidrs   = []
+  k8s_worker_subnets = []
+  private_subnets  = []
   public_subnets   = ["10.0.101.0/24", "10.0.102.0/24"]
   environment_name = local.environment_name
   cluster_name     = local.environment_name
   tags             = local.tags
+  enable_vpn_gateway = false
 }
