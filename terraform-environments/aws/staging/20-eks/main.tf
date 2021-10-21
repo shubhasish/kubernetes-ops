@@ -56,7 +56,7 @@ module "eks" {
   cluster_name = local.environment_name
 
   vpc_id         = data.terraform_remote_state.vpc.outputs.vpc_id
-  k8s_subnets    = data.terraform_remote_state.vpc.outputs.public_subnets
+  k8s_subnets    = data.terraform_remote_state.vpc.outputs.private_subnets
   public_subnets = data.terraform_remote_state.vpc.outputs.public_subnets
 
   cluster_version = "1.20"
@@ -68,14 +68,14 @@ module "eks" {
   ]
 
   # private cluster - kubernetes API is internal the the VPC
-  //  cluster_endpoint_private_access                = true
-  //  cluster_create_endpoint_private_access_sg_rule = true
-  //  cluster_endpoint_private_access_cidrs = [
-  //    "10.0.0.0/8",
-  //    "172.16.0.0/12",
-  //    "192.168.0.0/16",
-  //    "100.64.0.0/16",
-  //  ]
+    cluster_endpoint_private_access                = true
+    cluster_create_endpoint_private_access_sg_rule = true
+    cluster_endpoint_private_access_cidrs = [
+      "10.0.0.0/8",
+      "172.16.0.0/12",
+      "192.168.0.0/16",
+      "100.64.0.0/16",
+    ]
 
   map_roles = [
     {
@@ -90,7 +90,7 @@ module "eks" {
     ng1 = {
       version          = "1.20"
       disk_size        = 20
-      desired_capacity = 1
+      desired_capacity = 2
       max_capacity     = 4
       min_capacity     = 1
       instance_types   = ["t3a.large"]
