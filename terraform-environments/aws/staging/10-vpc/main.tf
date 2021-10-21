@@ -38,7 +38,7 @@ module "vpc" {
   source = "github.com/ManagedKube/kubernetes-ops//terraform-modules/aws/vpc?ref=v1.0.24"
 
   aws_region       = local.aws_region
-  azs              = ["us-east-2a", "us-east-2b"]
+  azs              = ["us-west-2a", "us-west-2b"]
   vpc_cidr         = "10.0.0.0/16"
   secondary_cidrs   = []
   k8s_worker_subnets = []
