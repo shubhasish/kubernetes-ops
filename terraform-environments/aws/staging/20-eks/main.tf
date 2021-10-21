@@ -68,14 +68,14 @@ module "eks" {
   ]
 
   # private cluster - kubernetes API is internal the the VPC
-    cluster_endpoint_private_access                = true
-    cluster_create_endpoint_private_access_sg_rule = true
-    cluster_endpoint_private_access_cidrs = [
-      "10.0.0.0/8",
-      "172.16.0.0/12",
-      "192.168.0.0/16",
-      "100.64.0.0/16",
-    ]
+  cluster_endpoint_private_access                = true
+  cluster_create_endpoint_private_access_sg_rule = true
+  cluster_endpoint_private_access_cidrs = [
+    "10.0.0.0/8",
+    "172.16.0.0/12",
+    "192.168.0.0/16",
+    "100.64.0.0/16",
+  ]
 
   map_roles = [
     {
