@@ -35,6 +35,7 @@ provider "aws" {
 #
 # VPC
 #
+#
 module "vpc" {
   source = "github.com/ManagedKube/kubernetes-ops//terraform-modules/aws/vpc?ref=v1.0.24"
 
