@@ -1,5 +1,5 @@
 controller:
-  ingressClass: nginx-external
+  ingressClass: nginx-external-new
   
   replicaCount: 1
 
