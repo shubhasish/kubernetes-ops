@@ -9,6 +9,10 @@ controller:
 
     annotations:
       service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
+    internal:
+      enabled: true
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-internal: "true"
 
   nodeSelectors: {}
 
