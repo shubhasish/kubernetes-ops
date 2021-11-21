@@ -59,7 +59,7 @@ provider "aws" {
 //  }
 //}
 
-data "aws_eks_cluster" "eks"{
+data "aws_eks_cluster" "eks" {
   name = local.environment_name
 }
 
