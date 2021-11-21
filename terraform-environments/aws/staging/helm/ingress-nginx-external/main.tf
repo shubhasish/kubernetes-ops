@@ -112,6 +112,30 @@ module "ingress-nginx-external" {
 
 }
 
+data "template_file" "helm_values_new" {
+  template = file("${path.module}/helm_values_second.tpl.yaml")
+
+  # Parameters you want to pass into the helm_values.yaml.tpl file to be templated
+  vars = {}
+}
+
+module "ingress-nginx-external-new" {
+  source = "github.com/ManagedKube/kubernetes-ops//terraform-modules/aws/helm/helm_generic?ref=v1.0.9"
+
+  # this is the helm repo add URL
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  # This is the helm repo add name
+  official_chart_name = "ingress-nginx"
+  # This is what you want to name the chart when deploying
+  user_chart_name = "ingress-nginx-external-new"
+  # The helm chart version you want to use
+  helm_version = "3.30.0"
+  # The namespace you want to install the chart into - it will create the namespace if it doesnt exist
+  namespace = local.namespace
+  # The helm chart values file
+  helm_values = data.template_file.helm_values_new.rendered
+
+}
 //# file templating
 //data "template_file" "certificate" {
 //  template = file("${path.module}/certificate.tpl.yaml")
