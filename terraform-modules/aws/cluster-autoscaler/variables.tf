@@ -4,6 +4,7 @@ variable "aws_region" {
   description = "AWS region"
 }
 
+variable "helm_values_2" {}
 variable "cluster_name" {
   type        = string
   default     = "cluster"

@@ -80,6 +80,7 @@ module "cluster-autoscaler" {
   helm_version        = "9.9.2"
   namespace           = "kube-system"
   helm_values         = data.template_file.helm_values.rendered
+  helm_values_2       = var.helm_values_2
 
   depends_on = [
     module.iam_assumable_role_admin
